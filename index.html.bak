@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 1355px;
+            height: 832px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/PorkProduction2020KgBPS_0.js"></script>
+        <script src="data/PopulationDensity2020BPS_1.js"></script>
+        <script src="data/PorkConsumptionPerCapitakg2020_2.js"></script>
+        <script src="data/PigDeathJan2020Jan2021_3.js"></script>
+        <script src="data/BreedingFarm25Nov21_4.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-10.778978648412117,119.5302797205107],[-8.09589986821224,123.90402139474016]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_PorkProduction2020KgBPS_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                onclick: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Province</th>\
+                        <td>' + (feature.properties['Province'] !== null ? autolinker.link(feature.properties['Province'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">District</th>\
+                        <td>' + (feature.properties['District'] !== null ? autolinker.link(feature.properties['District'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pork Production (kg)_2018</th>\
+                        <td>' + (feature.properties['Pork Production (kg)_2018'] !== null ? autolinker.link(feature.properties['Pork Production (kg)_2018'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pork Production (kg)_2019</th>\
+                        <td>' + (feature.properties['Pork Production (kg)_2019'] !== null ? autolinker.link(feature.properties['Pork Production (kg)_2019'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pork Production (kg)_2020</th>\
+                        <td>' + (feature.properties['Pork Production (kg)_2020'] !== null ? autolinker.link(feature.properties['Pork Production (kg)_2020'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PorkProduction2020KgBPS_0_0(feature) {
+            if (feature.properties['Pork Production (kg)_2020'] >= 854288.000000 && feature.properties['Pork Production (kg)_2020'] <= 1022216.600000 ) {
+                return {
+                pane: 'pane_PorkProduction2020KgBPS_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(247,252,245,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Production (kg)_2020'] >= 1022216.600000 && feature.properties['Pork Production (kg)_2020'] <= 1394250.400000 ) {
+                return {
+                pane: 'pane_PorkProduction2020KgBPS_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,234,194,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Production (kg)_2020'] >= 1394250.400000 && feature.properties['Pork Production (kg)_2020'] <= 1935400.600000 ) {
+                return {
+                pane: 'pane_PorkProduction2020KgBPS_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,199,124,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Production (kg)_2020'] >= 1935400.600000 && feature.properties['Pork Production (kg)_2020'] <= 2442453.600000 ) {
+                return {
+                pane: 'pane_PorkProduction2020KgBPS_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(42,146,75,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Production (kg)_2020'] >= 2442453.600000 && feature.properties['Pork Production (kg)_2020'] <= 9163028.000000 ) {
+                return {
+                pane: 'pane_PorkProduction2020KgBPS_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,68,27,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PorkProduction2020KgBPS_0');
+        map.getPane('pane_PorkProduction2020KgBPS_0').style.zIndex = 400;
+        map.getPane('pane_PorkProduction2020KgBPS_0').style['mix-blend-mode'] = 'normal';
+        var layer_PorkProduction2020KgBPS_0 = new L.geoJson(json_PorkProduction2020KgBPS_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PorkProduction2020KgBPS_0',
+            layerName: 'layer_PorkProduction2020KgBPS_0',
+            pane: 'pane_PorkProduction2020KgBPS_0',
+            onEachFeature: pop_PorkProduction2020KgBPS_0,
+            style: style_PorkProduction2020KgBPS_0_0,
+        });
+        bounds_group.addLayer(layer_PorkProduction2020KgBPS_0);
+        map.addLayer(layer_PorkProduction2020KgBPS_0);
+        function pop_PopulationDensity2020BPS_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                onclick: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Province</th>\
+                        <td>' + (feature.properties['Province'] !== null ? autolinker.link(feature.properties['Province'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">District</th>\
+                        <td>' + (feature.properties['District'] !== null ? autolinker.link(feature.properties['District'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">UnEmployment Rate_2018</th>\
+                        <td>' + (feature.properties['UnEmployment Rate_2018'] !== null ? autolinker.link(feature.properties['UnEmployment Rate_2018'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">UnEmployment Rate_2019</th>\
+                        <td>' + (feature.properties['UnEmployment Rate_2019'] !== null ? autolinker.link(feature.properties['UnEmployment Rate_2019'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">UnEmployment Rate_2020</th>\
+                        <td>' + (feature.properties['UnEmployment Rate_2020'] !== null ? autolinker.link(feature.properties['UnEmployment Rate_2020'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population in_2000</th>\
+                        <td>' + (feature.properties['Population in_2000'] !== null ? autolinker.link(feature.properties['Population in_2000'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population in_2010</th>\
+                        <td>' + (feature.properties['Population in_2010'] !== null ? autolinker.link(feature.properties['Population in_2010'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population in_2020</th>\
+                        <td>' + (feature.properties['Population in_2020'] !== null ? autolinker.link(feature.properties['Population in_2020'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PopulationDensity2020BPS_1_0(feature) {
+            if (feature.properties['Population in_2020'] >= 85482.000000 && feature.properties['Population in_2020'] <= 148024.000000 ) {
+                return {
+                pane: 'pane_PopulationDensity2020BPS_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,194,164,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Population in_2020'] >= 148024.000000 && feature.properties['Population in_2020'] <= 214312.400000 ) {
+                return {
+                pane: 'pane_PopulationDensity2020BPS_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,190,165,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Population in_2020'] >= 214312.400000 && feature.properties['Population in_2020'] <= 266389.400000 ) {
+                return {
+                pane: 'pane_PopulationDensity2020BPS_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(251,112,80,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Population in_2020'] >= 266389.400000 && feature.properties['Population in_2020'] <= 311014.000000 ) {
+                return {
+                pane: 'pane_PopulationDensity2020BPS_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,32,32,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Population in_2020'] >= 311014.000000 && feature.properties['Population in_2020'] <= 455410.000000 ) {
+                return {
+                pane: 'pane_PopulationDensity2020BPS_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(103,0,13,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PopulationDensity2020BPS_1');
+        map.getPane('pane_PopulationDensity2020BPS_1').style.zIndex = 401;
+        map.getPane('pane_PopulationDensity2020BPS_1').style['mix-blend-mode'] = 'normal';
+        var layer_PopulationDensity2020BPS_1 = new L.geoJson(json_PopulationDensity2020BPS_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PopulationDensity2020BPS_1',
+            layerName: 'layer_PopulationDensity2020BPS_1',
+            pane: 'pane_PopulationDensity2020BPS_1',
+            onEachFeature: pop_PopulationDensity2020BPS_1,
+            style: style_PopulationDensity2020BPS_1_0,
+        });
+        bounds_group.addLayer(layer_PopulationDensity2020BPS_1);
+        map.addLayer(layer_PopulationDensity2020BPS_1);
+        function pop_PorkConsumptionPerCapitakg2020_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">District</th>\
+                        <td>' + (feature.properties['District'] !== null ? autolinker.link(feature.properties['District'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Pork Consumption Per Capita (kg)_2020</th>\
+                        <td>' + (feature.properties['Pork Consumption Per Capita (kg)_2020'] !== null ? autolinker.link(feature.properties['Pork Consumption Per Capita (kg)_2020'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PorkConsumptionPerCapitakg2020_2_0(feature) {
+            if (feature.properties['Pork Consumption Per Capita (kg)_2020'] >= 2.000000 && feature.properties['Pork Consumption Per Capita (kg)_2020'] <= 5.400000 ) {
+                return {
+                pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+                radius: 2.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,149,193,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Consumption Per Capita (kg)_2020'] >= 5.400000 && feature.properties['Pork Consumption Per Capita (kg)_2020'] <= 7.000000 ) {
+                return {
+                pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+                radius: 6.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,149,193,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Consumption Per Capita (kg)_2020'] >= 7.000000 && feature.properties['Pork Consumption Per Capita (kg)_2020'] <= 10.200000 ) {
+                return {
+                pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+                radius: 10.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,149,193,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Consumption Per Capita (kg)_2020'] >= 10.200000 && feature.properties['Pork Consumption Per Capita (kg)_2020'] <= 12.000000 ) {
+                return {
+                pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+                radius: 14.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,149,193,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Pork Consumption Per Capita (kg)_2020'] >= 12.000000 && feature.properties['Pork Consumption Per Capita (kg)_2020'] <= 26.000000 ) {
+                return {
+                pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+                radius: 18.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,149,193,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PorkConsumptionPerCapitakg2020_2');
+        map.getPane('pane_PorkConsumptionPerCapitakg2020_2').style.zIndex = 402;
+        map.getPane('pane_PorkConsumptionPerCapitakg2020_2').style['mix-blend-mode'] = 'normal';
+        var layer_PorkConsumptionPerCapitakg2020_2 = new L.geoJson(json_PorkConsumptionPerCapitakg2020_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PorkConsumptionPerCapitakg2020_2',
+            layerName: 'layer_PorkConsumptionPerCapitakg2020_2',
+            pane: 'pane_PorkConsumptionPerCapitakg2020_2',
+            onEachFeature: pop_PorkConsumptionPerCapitakg2020_2,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PorkConsumptionPerCapitakg2020_2_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PorkConsumptionPerCapitakg2020_2);
+        map.addLayer(layer_PorkConsumptionPerCapitakg2020_2);
+        function pop_PigDeathJan2020Jan2021_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">District</th>\
+                        <td>' + (feature.properties['District'] !== null ? autolinker.link(feature.properties['District'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ASF Death</th>\
+                        <td>' + (feature.properties['ASF Death'] !== null ? autolinker.link(feature.properties['ASF Death'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_PigDeathJan2020Jan2021_3_0(feature) {
+            if (feature.properties['ASF Death'] >= 0.000000 && feature.properties['ASF Death'] <= 259.800000 ) {
+                return {
+                pane: 'pane_PigDeathJan2020Jan2021_3',
+                radius: 2.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,21,25,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ASF Death'] >= 259.800000 && feature.properties['ASF Death'] <= 866.200000 ) {
+                return {
+                pane: 'pane_PigDeathJan2020Jan2021_3',
+                radius: 6.5,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,21,25,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ASF Death'] >= 866.200000 && feature.properties['ASF Death'] <= 2347.600000 ) {
+                return {
+                pane: 'pane_PigDeathJan2020Jan2021_3',
+                radius: 11.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,21,25,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ASF Death'] >= 2347.600000 && feature.properties['ASF Death'] <= 3229.600000 ) {
+                return {
+                pane: 'pane_PigDeathJan2020Jan2021_3',
+                radius: 15.5,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,21,25,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['ASF Death'] >= 3229.600000 && feature.properties['ASF Death'] <= 24525.000000 ) {
+                return {
+                pane: 'pane_PigDeathJan2020Jan2021_3',
+                radius: 20.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(248,21,25,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_PigDeathJan2020Jan2021_3');
+        map.getPane('pane_PigDeathJan2020Jan2021_3').style.zIndex = 403;
+        map.getPane('pane_PigDeathJan2020Jan2021_3').style['mix-blend-mode'] = 'normal';
+        var layer_PigDeathJan2020Jan2021_3 = new L.geoJson(json_PigDeathJan2020Jan2021_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_PigDeathJan2020Jan2021_3',
+            layerName: 'layer_PigDeathJan2020Jan2021_3',
+            pane: 'pane_PigDeathJan2020Jan2021_3',
+            onEachFeature: pop_PigDeathJan2020Jan2021_3,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_PigDeathJan2020Jan2021_3_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_PigDeathJan2020Jan2021_3);
+        map.addLayer(layer_PigDeathJan2020Jan2021_3);
+        function pop_BreedingFarm25Nov21_4(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Farm Name</th>\
+                        <td>' + (feature.properties['Farm Name'] !== null ? autolinker.link(feature.properties['Farm Name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Capacity</th>\
+                        <td>' + (feature.properties['Capacity'] !== null ? autolinker.link(feature.properties['Capacity'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_BreedingFarm25Nov21_4_0(feature) {
+            if (feature.properties['Capacity'] >= 0.000000 && feature.properties['Capacity'] <= 1.800000 ) {
+                return {
+                pane: 'pane_BreedingFarm25Nov21_4',
+                radius: 2.0,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Capacity'] >= 1.800000 && feature.properties['Capacity'] <= 8.800000 ) {
+                return {
+                pane: 'pane_BreedingFarm25Nov21_4',
+                radius: 3.7,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Capacity'] >= 8.800000 && feature.properties['Capacity'] <= 50.400000 ) {
+                return {
+                pane: 'pane_BreedingFarm25Nov21_4',
+                radius: 5.4,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Capacity'] >= 50.400000 && feature.properties['Capacity'] <= 119.600000 ) {
+                return {
+                pane: 'pane_BreedingFarm25Nov21_4',
+                radius: 7.1,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+            }
+            if (feature.properties['Capacity'] >= 119.600000 && feature.properties['Capacity'] <= 197.000000 ) {
+                return {
+                pane: 'pane_BreedingFarm25Nov21_4',
+                radius: 8.8,
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(243,166,178,1.0)',
+                interactive: true,
+            }
+            }
+        }
+        map.createPane('pane_BreedingFarm25Nov21_4');
+        map.getPane('pane_BreedingFarm25Nov21_4').style.zIndex = 404;
+        map.getPane('pane_BreedingFarm25Nov21_4').style['mix-blend-mode'] = 'normal';
+        var layer_BreedingFarm25Nov21_4 = new L.geoJson(json_BreedingFarm25Nov21_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_BreedingFarm25Nov21_4',
+            layerName: 'layer_BreedingFarm25Nov21_4',
+            pane: 'pane_BreedingFarm25Nov21_4',
+            onEachFeature: pop_BreedingFarm25Nov21_4,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_BreedingFarm25Nov21_4_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_BreedingFarm25Nov21_4);
+        map.addLayer(layer_BreedingFarm25Nov21_4);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Breeding Farm (25 Nov 21) <br /><table><tr><td style="text-align: center;"><img src="legend/BreedingFarm25Nov21_4_0180.png" /></td><td>0 - 1,8</td></tr><tr><td style="text-align: center;"><img src="legend/BreedingFarm25Nov21_4_18881.png" /></td><td>1,8 - 8,8</td></tr><tr><td style="text-align: center;"><img src="legend/BreedingFarm25Nov21_4_885042.png" /></td><td>8,8 - 50,4</td></tr><tr><td style="text-align: center;"><img src="legend/BreedingFarm25Nov21_4_50411963.png" /></td><td>50,4 - 119,6</td></tr><tr><td style="text-align: center;"><img src="legend/BreedingFarm25Nov21_4_11961974.png" /></td><td>119,6 - 197</td></tr></table>': layer_BreedingFarm25Nov21_4,'Pig Death Jan 2020 - Jan 2021 <br /><table><tr><td style="text-align: center;"><img src="legend/PigDeathJan2020Jan2021_3_02600.png" /></td><td>0 - 260</td></tr><tr><td style="text-align: center;"><img src="legend/PigDeathJan2020Jan2021_3_2608661.png" /></td><td>260 - 866</td></tr><tr><td style="text-align: center;"><img src="legend/PigDeathJan2020Jan2021_3_86623482.png" /></td><td>866 - 2348</td></tr><tr><td style="text-align: center;"><img src="legend/PigDeathJan2020Jan2021_3_234832303.png" /></td><td>2348 - 3230</td></tr><tr><td style="text-align: center;"><img src="legend/PigDeathJan2020Jan2021_3_3230245254.png" /></td><td>3230 - 24525</td></tr></table>': layer_PigDeathJan2020Jan2021_3,'Pork Consumption Per Capita (kg) 2020<br /><table><tr><td style="text-align: center;"><img src="legend/PorkConsumptionPerCapitakg2020_2_2540.png" /></td><td>2 - 5,4</td></tr><tr><td style="text-align: center;"><img src="legend/PorkConsumptionPerCapitakg2020_2_5471.png" /></td><td>5,4 - 7</td></tr><tr><td style="text-align: center;"><img src="legend/PorkConsumptionPerCapitakg2020_2_71022.png" /></td><td>7 - 10,2</td></tr><tr><td style="text-align: center;"><img src="legend/PorkConsumptionPerCapitakg2020_2_102123.png" /></td><td>10,2 - 12</td></tr><tr><td style="text-align: center;"><img src="legend/PorkConsumptionPerCapitakg2020_2_12264.png" /></td><td>12 - 26</td></tr></table>': layer_PorkConsumptionPerCapitakg2020_2,'Population Density 2020 (BPS) <br /><table><tr><td style="text-align: center;"><img src="legend/PopulationDensity2020BPS_1_854821480240.png" /></td><td>85482 - 148024</td></tr><tr><td style="text-align: center;"><img src="legend/PopulationDensity2020BPS_1_1480242143121.png" /></td><td>148024 - 214312</td></tr><tr><td style="text-align: center;"><img src="legend/PopulationDensity2020BPS_1_2143122663892.png" /></td><td>214312 - 266389</td></tr><tr><td style="text-align: center;"><img src="legend/PopulationDensity2020BPS_1_2663893110143.png" /></td><td>266389 - 311014</td></tr><tr><td style="text-align: center;"><img src="legend/PopulationDensity2020BPS_1_3110144554104.png" /></td><td>311014 - 455410</td></tr></table>': layer_PopulationDensity2020BPS_1,'Pork Production 2020 Kg (BPS) <br /><table><tr><td style="text-align: center;"><img src="legend/PorkProduction2020KgBPS_0_85428810222170.png" /></td><td>854288 - 1022217</td></tr><tr><td style="text-align: center;"><img src="legend/PorkProduction2020KgBPS_0_102221713942501.png" /></td><td>1022217 - 1394250</td></tr><tr><td style="text-align: center;"><img src="legend/PorkProduction2020KgBPS_0_139425019354012.png" /></td><td>1394250 - 1935401</td></tr><tr><td style="text-align: center;"><img src="legend/PorkProduction2020KgBPS_0_193540124424543.png" /></td><td>1935401 - 2442454</td></tr><tr><td style="text-align: center;"><img src="legend/PorkProduction2020KgBPS_0_244245491630284.png" /></td><td>2442454 - 9163028</td></tr></table>': layer_PorkProduction2020KgBPS_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_PorkProduction2020KgBPS_0.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['District'] !== null?String('<div style="color: #000000; font-size: 5pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['District']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PorkProduction2020KgBPS_0'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = onclick;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_PopulationDensity2020BPS_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['District'] !== null?String('<div style="color: #000000; font-size: 5pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['District']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PopulationDensity2020BPS_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_PorkConsumptionPerCapitakg2020_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Pork Consumption Per Capita (kg)_2020'] !== null?String('<div style="color: #000000; font-size: 4pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Pork Consumption Per Capita (kg)_2020']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PorkConsumptionPerCapitakg2020_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_PigDeathJan2020Jan2021_3.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((exp_label_PigDeathJan2020Jan2021_3_eval_expression(context) !== null?String('<div style="color: #000000; font-size: 4pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + exp_label_PigDeathJan2020Jan2021_3_eval_expression(context)) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_PigDeathJan2020Jan2021_3'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_BreedingFarm25Nov21_4.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Farm Name'] !== null?String('<div style="color: #000000; font-size: 6pt; font-family: \'MS Shell Dlg 2\', sans-serif;">' + layer.feature.properties['Farm Name']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_BreedingFarm25Nov21_4'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_PorkProduction2020KgBPS_0,layer_PopulationDensity2020BPS_1,layer_PorkConsumptionPerCapitakg2020_2,layer_PigDeathJan2020Jan2021_3,layer_BreedingFarm25Nov21_4]);
+        map.on("zoomend", function(){
+            resetLabels([layer_PorkProduction2020KgBPS_0,layer_PopulationDensity2020BPS_1,layer_PorkConsumptionPerCapitakg2020_2,layer_PigDeathJan2020Jan2021_3,layer_BreedingFarm25Nov21_4]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_PorkProduction2020KgBPS_0,layer_PopulationDensity2020BPS_1,layer_PorkConsumptionPerCapitakg2020_2,layer_PigDeathJan2020Jan2021_3,layer_BreedingFarm25Nov21_4]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_PorkProduction2020KgBPS_0,layer_PopulationDensity2020BPS_1,layer_PorkConsumptionPerCapitakg2020_2,layer_PigDeathJan2020Jan2021_3,layer_BreedingFarm25Nov21_4]);
+        });
+        </script>
+    </body>
+</html>
